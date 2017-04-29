@@ -1,0 +1,12 @@
+{% extends "doctors/base.html" %}
+{% load static %}
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'doctors/style/intranet.css' %}" />
+
+<div class=intranet>
+	Hello, patient {{ request.user.get_full_name }}.
+	Your doctor is {{ request.user.patient.doctor.user.full_name }}
+</div>
+
+{% endblock body %}

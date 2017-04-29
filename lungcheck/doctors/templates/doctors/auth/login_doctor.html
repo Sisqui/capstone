@@ -1,0 +1,40 @@
+
+{% extends "doctors/base.html" %}
+{% load static %}
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'doctors/style/login.css' %}" />
+
+<body>
+
+<div class="logincontainer">
+<form method="post">
+  {% csrf_token %}
+  
+  <div class="imgcontainer">
+    <img src="{% static 'doctors/pix/doctor_login_logo.png' %}" alt="Doctor" class="avatar">
+  </div>
+
+ <div class="panel panel-basic">
+    <div class="form-group">
+         <input type="text" class="form-control" placeholder="Username" name="username" required>
+    </div>
+    <div class="form-group">
+         <input type="password" class="form-control" placeholder="Password" name="password"required>
+    </div>
+    <div class="form-group">
+         <button type="submit" class="form-control" required>Login</button>
+    </div>        
+    <input type="checkbox" checked="checked"> Remember me
+  </div>
+
+  <div class="formcontainer" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+</div>
+
+</body>
+
+{% endblock body %}

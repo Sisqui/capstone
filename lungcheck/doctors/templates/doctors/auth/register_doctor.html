@@ -1,0 +1,57 @@
+
+{% extends "doctors/base.html" %}
+
+{% load static %}
+
+{% block title %}Doctor register{% endblock title %}
+
+{% block body %}
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">Doctor registration</div>
+		<div class="panel-body">
+			<div class="form-group">
+		</div>
+		<div class="panel-footer">
+			<form>
+				{% csrf_token %}
+				<div class="form-group">
+    				<label for="email">Username:</label>
+   					 <input type="text" class="form-control" id="username">
+				</div>
+				<div class="form-group">
+  				<label for="first_name">First name:</label>
+ 					 <input type="text" class="form-control" id="first_name">
+				</div>
+				<div class="form-group">
+  				<label for="last_name">Last name:</label>
+ 					 <input type="text" class="form-control" id="last_name">
+				</div>
+				<div class="form-group">
+  				<label for="license">License number:</label>
+ 					 <input type="text" class="form-control" id="license">
+				</div>
+				<div class="form-group">
+  				<label for="hospital">Hospital:</label>
+ 					 <input type="email" class="form-control" id="hospital">
+				</div>
+				<div class="form-group">
+  				<label for="email">Email address:</label>
+ 					 <input type="email" class="form-control" id="email">
+				</div>
+				<div class="form-group">
+  				<label for="email">Email address:</label>
+ 					 <input type="email" class="form-control" id="email">
+				</div>
+				<div class="form-group">
+  				<label for="email">Email address:</label>
+ 					 <input type="email" class="form-control" id="email">
+				</div>
+				<div class="checkbox">
+				    <label><input type="checkbox"> Remember me</label>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock body %}
