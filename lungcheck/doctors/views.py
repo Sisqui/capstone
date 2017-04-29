@@ -6,8 +6,11 @@ from django.http import Http404
 def doctor_login(request) :
 
 	if request.user.is_authenticated :
-		if request.user.doctor :
-			return redirect(doctor_intranet)
+		try :
+			if request.user.doctor :
+				return redirect(doctor_intranet)
+		except :
+			pass
 
 	if request.method and request.method == 'POST' :
 		username = request.POST['username']
@@ -70,11 +73,11 @@ def patient_forgot_password(request) :
 def doctor_intranet(request) :
 	
 	if request.user.is_authenticated :
-		if request.user.doctor :
-			return render(request, 'doctors/intranet/doctor.html')
-		else :
+		try :
+			if request.user.doctor :
+				return render(request, 'doctors/intranet/doctor.html')
+		except :
 			return Http404("Page does not exist.")
-
 	else :
 		return redirect(doctor_login)
 
@@ -82,11 +85,11 @@ def doctor_intranet(request) :
 def patient_intranet(request) :
 
 	if request.user.is_authenticated :
-		if request.user.patient :
-			return render(request, 'doctors/intranet/patient.html')
-		else :
+		try :
+			if request.user.patient :
+				return render(request, 'doctors/intranet/patient.html')
+		except :
 			return Http404("Page does not exist.")
-
 	else :
 		return redirect(patient_login)
 
