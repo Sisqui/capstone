@@ -9,7 +9,7 @@
 
 {% block body %}
 
-<body>
+<body class="doctor_register_body">
 	<div class="container-fluid">
 	  <div class="register_container">
 
@@ -38,12 +38,12 @@
 						
 				  <div class="form-group">
 					<label for="first_name">First name:</label>
-					<input type="text" class="form-control" id="first_name">
+					<input type="text" class="form-control" id="first_name" required>
 				  </div>
 					
 				  <div class="form-group">
 					<label for="last_name">Last name:</label>
-					<input type="text" class="form-control" id="last_name">
+					<input type="text" class="form-control" id="last_name" required>
 				  </div>	
 					
 				  <div class="form-group">
@@ -92,7 +92,7 @@
 					
 				  <div class="form-group">
 					<label for="country">Country:</label>
-					<div class="flagstrap" data-input-name="country"></div>
+					<select class="form-control" class="input-medium bfh-countries" data-country="FI"></select>
 				  </div> 
 
 				  <div class="form-group">
@@ -114,6 +114,10 @@
 		      <div class="panel-body">
 			    <form method="post" class="form">
 			   	  {% csrf_token %}
+
+			   	  <div class="logo_container">
+			        <img src="{% static 'doctors/pix/register_logo.png' %}" alt="Doctor" class="register_logo">
+			      </div>
 
 		          <div class="form-group">
 		    		<label for="username">Username:</label>
@@ -147,6 +151,7 @@
 
 	  </div>
 	</div>
+
 </body>
 
 {% endblock body %}
