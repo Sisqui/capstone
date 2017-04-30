@@ -28,6 +28,9 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+		<!-- Latest compiled JavaScript -->
+		<script src="{% static 'doctors/plugins/flagstrap/src/jquery.flagstrap.js' %}"></script>
+
 	</head>
 
 	<body>
@@ -35,5 +38,7 @@
 			{% block body %}Body here{% endblock %}
 		</div>
 	</body>
+
+	{% block scripts %}{% endblock %}
 
 </html>
