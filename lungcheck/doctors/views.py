@@ -45,8 +45,25 @@ def patient_login(request) :
 
 # Doctor register
 def doctor_register(request) :
-	# TODO
-	return render(request, 'doctors/auth/register_doctor.html')
+	
+	context = {}
+
+	# GOTO next step
+	if request.method and request.method == 'POST' :
+		# GOTO second step
+		if 'license' in request.POST :
+			context["second"] = True
+		# FINISHED
+		elif 'username' in request.POST :
+			return HttpResponse("Registrating...")
+		# GOTO third step
+		else :
+			context["third"] = True
+	# First time in
+	else :
+		context["first"] = True
+
+	return render(request, 'doctors/auth/register_doctor.html', context)
 
 # Patient register
 def patient_register(request) :

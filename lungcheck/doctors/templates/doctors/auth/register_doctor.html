@@ -3,55 +3,152 @@
 
 {% load static %}
 
-{% block title %}Doctor register{% endblock title %}
+{% block title %}
+	Doctor register
+{% endblock title %}
 
 {% block body %}
 
-	<div class="panel panel-primary">
-		<div class="panel-heading">Doctor registration</div>
-		<div class="panel-body">
-			<div class="form-group">
+  <div class="register_container">
+
+	<!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
+	{% if first %}
+
+		<!-- ALREADY REGISTERED ? -->
+	  	<div class="panel panel-primary">
+		  <div class="padded_container">
+		    Already registered? <a href="/doctors/login">Log in</a>
+		  </div>
 		</div>
-		<div class="panel-footer">
-			<form>
-				{% csrf_token %}
-				<div class="form-group">
-    				<label for="email">Username:</label>
-   					 <input type="text" class="form-control" id="username">
-				</div>
-				<div class="form-group">
-  				<label for="first_name">First name:</label>
- 					 <input type="text" class="form-control" id="first_name">
-				</div>
-				<div class="form-group">
-  				<label for="last_name">Last name:</label>
- 					 <input type="text" class="form-control" id="last_name">
-				</div>
-				<div class="form-group">
-  				<label for="license">License number:</label>
- 					 <input type="text" class="form-control" id="license">
-				</div>
-				<div class="form-group">
-  				<label for="hospital">Hospital:</label>
- 					 <input type="email" class="form-control" id="hospital">
-				</div>
-				<div class="form-group">
-  				<label for="email">Email address:</label>
- 					 <input type="email" class="form-control" id="email">
-				</div>
-				<div class="form-group">
-  				<label for="email">Email address:</label>
- 					 <input type="email" class="form-control" id="email">
-				</div>
-				<div class="form-group">
-  				<label for="email">Email address:</label>
- 					 <input type="email" class="form-control" id="email">
-				</div>
-				<div class="checkbox">
-				    <label><input type="checkbox"> Remember me</label>
-				</div>
-			</form>
+
+		<div class="panel panel-primary">
+		  <div class="panel-heading padded_container">
+		    Doctor registration
+		  </div>
+	      
+	      <div class="panel-body">
+		    <form method="post" class="form">
+		   	  {% csrf_token %}
+		          
+		      <div class="logo_container">
+		        <img src="{% static 'doctors/pix/register_logo.png' %}" alt="Doctor" class="register_logo">
+		      </div>
+					
+			  <div class="form-group">
+				<label for="first_name">First name:</label>
+				<input type="text" class="form-control" id="first_name">
+			  </div>
+				
+			  <div class="form-group">
+				<label for="last_name">Last name:</label>
+				<input type="text" class="form-control" id="last_name">
+			  </div>	
+				
+			  <div class="form-group">
+				<label for="license">License number:</label>
+				<input type="text" class="form-control" name="license" required>
+			  </div>
+				
+			  <div class="form-group">
+			  	<label for="hospital">Hospital:</label>
+				<input type="text" class="form-control" id="hospital" required>
+			  </div>
+
+			  <div class="form-group">
+	            <button type="submit" class="form-control btn btn-primary">Continue</button>
+	          </div>       
+
+		    </form>
+		  </div>
 		</div>
-	</div>
+
+	<!-- REGISTER FORM: SECOND PERSONAL INFO -->
+	{% elif second %}
+	
+		<div class="panel panel-primary">
+		  <div class="panel-heading padded_container">
+		    Doctor registration
+		  </div>
+	      
+	      <div class="panel-body">
+		    <form method="post" class="form">
+		   	  {% csrf_token %}
+		          
+		      <div class="logo_container">
+		        <img src="{% static 'doctors/pix/register_logo.png' %}" alt="Doctor" class="register_logo">
+		      </div>
+				
+			  <div class="form-group">
+				<label for="age">Age:</label>
+				<input type="numeric" class="form-control" id="age">
+			  </div>
+				
+			  <div class="form-group">
+				<label for="gender">Gender:</label>
+				<input type="text" class="form-control" id="gender">
+			  </div>
+				
+			  <div class="form-group">
+				<label for="country">Country:</label>
+				<div class="flagstrap" data-input-name="country"></div>
+			  </div> 
+
+			  <div class="form-group">
+	            <button type="submit" class="form-control btn btn-primary">Continue</button>
+	          </div>       
+
+		    </form>
+		  </div>
+		</div>
+
+	<!-- REGISTER FORM: THIRD USER AND PASSWORD -->
+	{% elif third %}
+
+		<div class="panel panel-primary">
+		  <div class="panel-heading padded_container">
+		    Doctor registration
+		  </div>
+	      
+	      <div class="panel-body">
+		    <form method="post" class="form">
+		   	  {% csrf_token %}
+
+	          <div class="form-group">
+	    		<label for="username">Username:</label>
+	   			<input type="text" class="form-control" id="username">
+			  </div>
+					
+			  <div class="form-group">
+				<label for="mail">Email:</label>
+				<input type="text" class="form-control" id="mail">
+			  </div>
+				
+			  <div class="form-group">
+				<label for="password">Password:</label>
+				<input type="text" class="form-control" id="password">
+			  </div>	
+				
+			  <div class="form-group">
+				<label for="repeat_password">Repeat password:</label>
+				<input type="text" class="form-control" id="repeat_password">
+			  </div>
+
+			  <div class="form-group">
+	            <button type="submit" class="form-control btn btn-success">Finish registration</button>
+	          </div>       
+
+		    </form>
+		  </div>
+		</div>
+
+	{% endif %}
+
+  </div>
 
 {% endblock body %}
+
+{% block scripts %}
+<script>
+    $('.flagstrap').flagStrap();
+</script>
+{% endblock %}
