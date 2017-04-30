@@ -33,12 +33,10 @@
 
 	</head>
 
-	<body>
-		<div class="container-fluid">
-			{% block body %}Body here{% endblock %}
+	{% block body %}
+		Body here
 		</div>
 	</body>
-
-	{% block scripts %}{% endblock %}
+	{% endblock %}
 
 </html>
