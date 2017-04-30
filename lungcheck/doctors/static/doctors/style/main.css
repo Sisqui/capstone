@@ -7,6 +7,12 @@
 	background-repeat: no-repeat;
 }
 
+.doctor_login_body {
+	background: url('../pix/blur2.jpg');
+	background-size: stretch;
+	background-repeat: no-repeat;
+}
+
 .login_container {
 	padding-top: 100px;
 	width : 340px;
@@ -46,6 +52,15 @@
     .register_container {
     	padding-top: 80px;
     	width : 50%;
+    	margin : 0 auto;
+    }
+}
+
+@media (min-width: 1000px) {
+
+    .register_container {
+    	padding-top: 80px;
+    	width : 40%;
     	margin : 0 auto;
     }
 }
