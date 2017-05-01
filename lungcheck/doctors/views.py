@@ -52,17 +52,18 @@ def doctor_register(request) :
 
 	# GOTO next step
 	if request.method and request.method == 'POST' :
+		# FINISHED
+		if 'username' in request.POST :
+			return HttpResponse("Registrating...")
+		# GOTO third step
+		elif 'experience' in request.POST :
+			context["third"] = True
 		# GOTO second step
-		if 'license' in request.POST :
+		elif 'license' in request.POST :
 			now = datetime.now()
 			context["second"] = True
 			context["years"] = reversed(range(now.year-100, now.year-20))
-		# FINISHED
-		elif 'username' in request.POST :
-			return HttpResponse("Registrating...")
-		# GOTO third step
-		else :
-			context["third"] = True
+		
 	# First time in
 	else :
 		context["first"] = True

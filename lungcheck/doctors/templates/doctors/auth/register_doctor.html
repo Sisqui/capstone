@@ -13,8 +13,8 @@
 	<div class="container-fluid">
 	  <div class="register_container">
 
-		<!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
 		{% if first %}
+		<!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
 
 			<div class="panel panel-primary">
 			  <div class="panel-heading padded_container">
@@ -64,8 +64,8 @@
 			  </div>
 			</div>
 
-		<!-- REGISTER FORM: SECOND PERSONAL INFO -->
 		{% elif second %}
+		<!-- REGISTER FORM: SECOND PERSONAL INFO -->
 		
 			<div class="panel panel-primary">
 			  <div class="panel-heading padded_container">
@@ -81,10 +81,10 @@
 			      </div>
 					
 				  <div class="form-group">
-					<label for="age">Birth year:</label>
-					<select class="form-control" id="gender">
+					<label for="birth_year">Birth year:</label>
+					<select class="form-control" id="birth_year">
 					  <option></option>
-					  {% for year in years %}
+					  {% for year in Years %}
 					    <option>{{ year }}</option>
 					  {% endfor %}
 					</select>
@@ -122,8 +122,8 @@
 			  </div>
 			</div>
 
-		<!-- REGISTER FORM: THIRD USER AND PASSWORD -->
 		{% elif third %}
+		<!-- REGISTER FORM: THIRD USER AND PASSWORD -->
 
 			<div class="panel panel-primary">
 			  <div class="panel-heading padded_container">
@@ -171,15 +171,6 @@
 
 	  </div>
 	</div>
-
-	<script type="text/javascript">
-        $(function () {
-            $('#datetimepicker10').datetimepicker({
-                viewMode: 'years',
-                format: 'MM/YYYY'
-            });
-        });
-    </script>
 
 </body>
 
