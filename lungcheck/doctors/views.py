@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import Http404
 
+from datetime import datetime
+
 # Doctor login
 def doctor_login(request) :
 
@@ -52,7 +54,9 @@ def doctor_register(request) :
 	if request.method and request.method == 'POST' :
 		# GOTO second step
 		if 'license' in request.POST :
+			now = datetime.now()
 			context["second"] = True
+			context["years"] = reversed(range(now.year-100, now.year-20))
 		# FINISHED
 		elif 'username' in request.POST :
 			return HttpResponse("Registrating...")

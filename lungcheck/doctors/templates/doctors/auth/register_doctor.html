@@ -16,13 +16,6 @@
 		<!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
 		{% if first %}
 
-			<!-- ALREADY REGISTERED ? -->
-		  	<div class="panel panel-primary">
-			  <div class="padded_container">
-			    Already registered? <a href="/doctors/login">Log in</a>
-			  </div>
-			</div>
-
 			<div class="panel panel-primary">
 			  <div class="panel-heading padded_container">
 			    Doctor registration
@@ -32,8 +25,8 @@
 			    <form method="post" class="form">
 			   	  {% csrf_token %}
 			          
-			      <div class="logo_container">
-			        <img src="{% static 'doctors/pix/register_logo.png' %}" alt="Doctor" class="register_logo">
+			      <div class="info_container bg-info">
+			      	Please, provide us some basic information.
 			      </div>
 						
 				  <div class="form-group">
@@ -64,6 +57,13 @@
 			  </div>
 			</div>
 
+			<!-- ALREADY REGISTERED ? -->
+		  	<div class="panel panel-primary">
+			  <div class="padded_container">
+			    Already registered? <a href="/doctors/login">Log in</a>
+			  </div>
+			</div>
+
 		<!-- REGISTER FORM: SECOND PERSONAL INFO -->
 		{% elif second %}
 		
@@ -75,24 +75,43 @@
 		      <div class="panel-body">
 			    <form method="post" class="form">
 			   	  {% csrf_token %}
-			          
-			      <div class="logo_container">
-			        <img src="{% static 'doctors/pix/register_logo.png' %}" alt="Doctor" class="register_logo">
+			      
+			      <div class="info_container bg-info">
+			      	Could you give us some more information?
 			      </div>
 					
 				  <div class="form-group">
-					<label for="age">Age:</label>
-					<input type="numeric" class="form-control" id="age">
+					<label for="age">Birth year:</label>
+					<select class="form-control" id="gender">
+					  <option></option>
+					  {% for year in years %}
+					    <option>{{ year }}</option>
+					  {% endfor %}
+					</select>
+				  </div>
+
+				  <div class="form-group">
+					<label for="experience">Years of experience:</label>
+					<select class="form-control" id="experience">
+					  <option>0 - 5</option>
+					  <option>5 - 10</option>
+					  <option>10 - 20</option>
+					  <option>20+</option>
+					</select>
 				  </div>
 					
 				  <div class="form-group">
 					<label for="gender">Gender:</label>
-					<input type="text" class="form-control" id="gender">
+					<select class="form-control" id="gender">
+					  <option>Not given</option>
+					  <option>Male</option>
+					  <option>Female</option>
+					</select>
 				  </div>
 					
 				  <div class="form-group">
 					<label for="country">Country:</label>
-					<select class="form-control" class="input-medium bfh-countries" data-country="FI"></select>
+					<select class="form-control input-medium bfh-countries" data-country="FI"></select>
 				  </div> 
 
 				  <div class="form-group">
@@ -115,8 +134,8 @@
 			    <form method="post" class="form">
 			   	  {% csrf_token %}
 
-			   	  <div class="logo_container">
-			        <img src="{% static 'doctors/pix/register_logo.png' %}" alt="Doctor" class="register_logo">
+			   	  <div class="info_container bg-info">
+			      	Finally, choose a username and password.
 			      </div>
 
 		          <div class="form-group">
@@ -126,21 +145,22 @@
 						
 				  <div class="form-group">
 					<label for="mail">Email:</label>
-					<input type="text" class="form-control" id="mail">
+					<input type="mail" class="form-control" id="mail">
 				  </div>
 					
 				  <div class="form-group">
 					<label for="password">Password:</label>
-					<input type="text" class="form-control" id="password">
+					<span style="float:right;"><i><small>Use at least 8 characters</small></i></span>
+					<input type="password" class="form-control" id="password">
 				  </div>	
 					
 				  <div class="form-group">
-					<label for="repeat_password">Repeat password:</label>
-					<input type="text" class="form-control" id="repeat_password">
+					<label for="confirm_password">Confirm password:</label>
+					<input type="password" class="form-control" id="confirm_password">
 				  </div>
 
 				  <div class="form-group">
-		            <button type="submit" class="form-control btn btn-success">Finish registration</button>
+		            <button type="submit" class="form-control btn btn-success">Complete registration</button>
 		          </div>       
 
 			    </form>
@@ -151,6 +171,15 @@
 
 	  </div>
 	</div>
+
+	<script type="text/javascript">
+        $(function () {
+            $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+            });
+        });
+    </script>
 
 </body>
 
