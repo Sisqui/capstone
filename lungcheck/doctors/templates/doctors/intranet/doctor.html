@@ -2,107 +2,108 @@
 {% load static %}
 {% block body %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'doctors/style/intranet.css' %}" />
+<body>
+	<div class="container-fluid">
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		      </button>
+		      <a class="navbar-brand" href="#">WebSiteName</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="#">Home</a></li>
+		        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Page 1-1</a></li>
+		            <li><a href="#">Page 1-2</a></li>
+		            <li><a href="#">Page 1-3</a></li>
+		          </ul>
+		        </li>
+		        <li><a href="#">Page 2</a></li>
+		        <li><a href="#">Page 3</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Page 1-1</a></li>
-            <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Page 1-3</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+		<div id=intranet>
+			
+			Hello, doctor {{ request.user.get_full_name }}.
+			Your license is {{ request.user.doctor.license }}
 
-<div id=intranet>
-	
-	Hello, doctor {{ request.user.get_full_name }}.
-	Your license is {{ request.user.doctor.license }}
+			<h1>Doctor Intranet</h1>
 
-	<h1>Doctor Intranet</h1>
+			<h2>Notifications</h2>
+			<table>
+				<tbody>
+					<tr>
+						<th style="width:50%">Message</th>
+						<th style="width:20%">Patient</th>
+						<th style="width:20%">Date</th>
+					</tr>
+					{% comment "TODO" %}
+					{% for notifications %}
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					{% endfor %}
+					{% endcomment %}
+				</tbody>
+			</table>
 
-	<h2>Notifications</h2>
-	<table>
-		<tbody>
-			<tr>
-				<th style="width:50%">Message</th>
-				<th style="width:20%">Patient</th>
-				<th style="width:20%">Date</th>
-			</tr>
-			{% comment "TODO" %}
-			{% for notifications %}
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			{% endfor %}
-			{% endcomment %}
-		</tbody>
-	</table>
+			<h2>Last recordings</h2>
+			<table>
+				<tbody>
+					<tr>
+						<th style="width:50%">Report</th>
+						<th style="width:20%">Patient</th>
+						<th style="width:20%">Date</th>
+					</tr>
+					{% comment "TODO" %}
+					{% for last recordings %}
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					{% endfor %}
+					{% endcomment %}
+				</tbody>
+			</table>
 
-	<h2>Last recordings</h2>
-	<table>
-		<tbody>
-			<tr>
-				<th style="width:50%">Report</th>
-				<th style="width:20%">Patient</th>
-				<th style="width:20%">Date</th>
-			</tr>
-			{% comment "TODO" %}
-			{% for last recordings %}
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			{% endfor %}
-			{% endcomment %}
-		</tbody>
-	</table>
-
-	<h2>Last active patients</h2>
-	<table>
-		<tbody>
-			<tr>
-				<th style="width:50%">Message</th>
-				<th style="width:30%">Last recording</th>
-			</tr>
-			{% comment "TODO" %}
-			{% for last recordings %}
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			{% endfor %}
-			{% endcomment %}
-		</tbody>
-	</table>
-
-</div>
+			<h2>Last active patients</h2>
+			<table>
+				<tbody>
+					<tr>
+						<th style="width:50%">Message</th>
+						<th style="width:30%">Last recording</th>
+					</tr>
+					{% comment "TODO" %}
+					{% for last recordings %}
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					{% endfor %}
+					{% endcomment %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
 
 
 

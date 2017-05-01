@@ -2,107 +2,112 @@
 {% load static %}
 {% block body %}
 
-<link rel="stylesheet" href="{% static 'lungcheck/assets/css/main.css' %}" />
+<body>
+	<div class="container-fluid">
 
-<!-- Header -->
-	<section id="header">
-		<header class="major">
-			<h1>Lungcheck for patients</h1>
-			<p style="padding-bottom: 0.6cm;">Self diagnosis of pulmonary diseases.</br>Periodic checks without a doctor.</p>
-			<ul class="actions">
-				<li><a href="/doctors/patients/register" class="button special scrolly">Register</a></li>
-				<li><a href="/doctors/patients/login" class="button special scrolly">Login</a></li>
-			</ul>
-		</header>
-		<div class="container">
-			<ul class="actions">
-				<li><a href="#one" class="button special scrolly">More information</a></li>
-			</ul>
-		</div>
-	</section>
+		<link rel="stylesheet" href="{% static 'lungcheck/assets/css/main.css' %}" />
 
-<!-- One -->
-	<section id="one" class="main special">
-		<div class="container">
-			<div class="content" >
+		<!-- Header -->
+			<section id="header">
 				<header class="major">
-					<h2><!--[-->What we offer<!--]--></h2>
+					<h1>Lungcheck for patients</h1>
+					<p style="padding-bottom: 0.6cm;">Self diagnosis of pulmonary diseases.</br>Periodic checks without a doctor.</p>
+					<ul class="actions">
+						<li><a href="/doctors/patients/register" class="button special scrolly">Register</a></li>
+						<li><a href="/doctors/patients/login" class="button special scrolly">Login</a></li>
+					</ul>
 				</header>
-				<p>Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum.</p>
-			</div>
-			<a href="#two" class="goto-next scrolly">Next</a>
-		</div>
-	</section>
+				<div class="container">
+					<ul class="actions">
+						<li><a href="#one" class="button special scrolly">More information</a></li>
+					</ul>
+				</div>
+			</section>
 
-<!-- Two -->
-	<section id="two" class="main special">
-		<div class="container">
-			<div class="content">
-				<header class="major">
-					<h2><!--[-->Benefits<!--]--></h2>
-				</header>
-				<p>Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate.</p>
-				<ul class="icons-grid">
-					<li>
-						<span class="icon major fa-camera-retro"></span>
-						<h3>Magna Etiam</h3>
-					</li>
-					<li>
-						<span class="icon major fa-pencil"></span>
-						<h3>Lorem Ipsum</h3>
-					</li>
-					<li>
-						<span class="icon major fa-code"></span>
-						<h3>Nulla Tempus</h3>
-					</li>
-					<li>
-						<span class="icon major fa-coffee"></span>
-						<h3>Sed Feugiat</h3>
-					</li>
-				</ul>
-			</div>
-			<a href="#footer" class="goto-next scrolly">Next</a>
-		</div>
-	</section>
+		<!-- One -->
+			<section id="one" class="main special">
+				<div class="container">
+					<div class="content" >
+						<header class="major">
+							<h2><!--[-->What we offer<!--]--></h2>
+						</header>
+						<p>Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum.</p>
+					</div>
+					<a href="#two" class="goto-next scrolly">Next</a>
+				</div>
+			</section>
 
-<!-- Footer -->
-	<section id="footer">
-		<div class="container">
-			<header class="major">
-				<h2><!--[-->Request more information<!--]--></h2>
-			</header>
-			<form method="post" action="#">
-				<div class="row uniform">
-					<div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-					<div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-					<div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-					<div class="12u$">
-						<ul class="actions">
-							<li><input type="submit" value="Send Message" class="special" /></li>
+		<!-- Two -->
+			<section id="two" class="main special">
+				<div class="container">
+					<div class="content">
+						<header class="major">
+							<h2><!--[-->Benefits<!--]--></h2>
+						</header>
+						<p>Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate.</p>
+						<ul class="icons-grid">
+							<li>
+								<span class="icon major fa-camera-retro"></span>
+								<h3>Magna Etiam</h3>
+							</li>
+							<li>
+								<span class="icon major fa-pencil"></span>
+								<h3>Lorem Ipsum</h3>
+							</li>
+							<li>
+								<span class="icon major fa-code"></span>
+								<h3>Nulla Tempus</h3>
+							</li>
+							<li>
+								<span class="icon major fa-coffee"></span>
+								<h3>Sed Feugiat</h3>
+							</li>
 						</ul>
 					</div>
+					<a href="#footer" class="goto-next scrolly">Next</a>
 				</div>
-			</form>
-		</div>
-		<footer>
-			<ul class="icons">
-				<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
-			</ul>
-			<ul class="copyright">
-				<li>&copy;2017 Lungcheck</li>
-			</ul>
-		</footer>
-	</section>
+			</section>
 
-<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/skel.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="assets/js/main.js"></script>
+		<!-- Footer -->
+			<section id="footer">
+				<div class="container">
+					<header class="major">
+						<h2><!--[-->Request more information<!--]--></h2>
+					</header>
+					<form method="post" action="#">
+						<div class="row uniform">
+							<div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
+							<div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
+							<div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+							<div class="12u$">
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" class="special" /></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div>
+				<footer>
+					<ul class="icons">
+						<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy;2017 Lungcheck</li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+	</div>
+</body>
 
 {% endblock body %}

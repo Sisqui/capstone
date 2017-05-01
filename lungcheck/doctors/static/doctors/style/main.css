@@ -1,16 +1,107 @@
 
+/* AUTH CSS */
 
-.logincontainer {
-  position: absolute;
-  width: 300px;
-  height: 600px;
-  z-index: 15;
-  top: 150px;
-  left: 50%;
-  min-left: 150px;
-  margin: 0px 0px 0px -150px;
+.doctor_register_body {
+	background: url('../pix/blur2.jpg');
+	background-size: stretch;
+	background-repeat: no-repeat;
 }
 
-.formcontainer {
+.doctor_login_body {
+	background: url('../pix/blur2.jpg');
+	background-size: stretch;
+	background-repeat: no-repeat;
+}
+
+.login_container {
+	padding-top: 100px;
+	width : 340px;
+	margin : 0 auto;
+}
+
+.register_container {
+	padding-top: 100px;
+	width : 70%;
+	margin : 0 auto;
+}
+
+.padded_container {
     padding: 16px;
+    margin : 0 auto;
+    text-align: center;
 }
+
+.info_container {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin : 0 0 16px 0;
+    text-align: center;
+}
+
+.logo_container {
+    text-align: center;
+    margin: 24px 0 35px 0px;
+ }
+
+.login_logo {
+	width: 65%;
+    border-radius: 50%;
+    border: 1px solid rgb(200,200,200);
+}
+
+.register_logo {
+	width: 45%;
+    border-radius: 50%;
+}
+
+@media (min-width: 800px) {
+
+    .register_container {
+    	padding-top: 80px;
+    	width : 50%;
+    	margin : 0 auto;
+    }
+}
+
+@media (min-width: 1000px) {
+
+    .register_container {
+    	padding-top: 80px;
+    	width : 40%;
+    	margin : 0 auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .doctor_register_body {
+        background: url('../pix/doctor_register_background_cut.jpg');
+		background-size: cover;
+		background-repeat: repeat;
+    }
+
+    .register_container {
+    	padding-top: 80px;
+    	width : 540px;
+    	margin : 0 0 0 8%;
+    }
+}
+
+@media (min-width: 1500px) {
+
+    .register_container {
+    	padding-top: 80px;
+    	width : 540px;
+    	margin : 0 0 0 12%;
+    }
+}
+
+@media (min-width: 1800px) {
+
+    .register_container {
+    	padding-top: 80px;
+    	width : 540px;
+    	margin : 0 0 0 15%;
+    }
+}
+
+/* INTRANET CSS */

@@ -16,24 +16,36 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/png" href="{% static 'lungcheck/images/favicon.png' %}"/>
+
 		<!-- Own css -->
 		<link rel="stylesheet" type="text/css" href="{% static 'doctors/style/main.css' %}" />
 
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!-- Bootstrap form helpers -->
+		<link rel="stylesheet" type="text/css" href="{% static 'doctors/plugins/formhelpers/dist/css/bootstrap-formhelpers.min.css' %}" rel="stylesheet">
 
-		<!-- Latest compiled JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- jQuery and jMoment library -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/en-gb.js"></script>
+
+		<!-- Latest compiled Bootstrap JavaScript -->
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/transition.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/collapse.js"></script>
+
+		<!-- Bootstrap form helpers -->
+		<script src="{% static 'doctors/plugins/formhelpers/dist/js/bootstrap-formhelpers.min.js' %}"></script>
 
 	</head>
 
-	<body>
-		<div class="container-fluid">
-			{% block body %}Body here{% endblock %}
+	{% block body %}
+		Body here
 		</div>
 	</body>
+	{% endblock %}
 
 </html>

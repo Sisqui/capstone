@@ -3,55 +3,184 @@
 
 {% load static %}
 
-{% block title %}Doctor register{% endblock title %}
+{% block title %}
+	Doctor register
+{% endblock title %}
 
 {% block body %}
 
-	<div class="panel panel-primary">
-		<div class="panel-heading">Doctor registration</div>
-		<div class="panel-body">
-			<div class="form-group">
-		</div>
-		<div class="panel-footer">
-			<form>
-				{% csrf_token %}
-				<div class="form-group">
-    				<label for="email">Username:</label>
-   					 <input type="text" class="form-control" id="username">
-				</div>
-				<div class="form-group">
-  				<label for="first_name">First name:</label>
- 					 <input type="text" class="form-control" id="first_name">
-				</div>
-				<div class="form-group">
-  				<label for="last_name">Last name:</label>
- 					 <input type="text" class="form-control" id="last_name">
-				</div>
-				<div class="form-group">
-  				<label for="license">License number:</label>
- 					 <input type="text" class="form-control" id="license">
-				</div>
-				<div class="form-group">
-  				<label for="hospital">Hospital:</label>
- 					 <input type="email" class="form-control" id="hospital">
-				</div>
-				<div class="form-group">
-  				<label for="email">Email address:</label>
- 					 <input type="email" class="form-control" id="email">
-				</div>
-				<div class="form-group">
-  				<label for="email">Email address:</label>
- 					 <input type="email" class="form-control" id="email">
-				</div>
-				<div class="form-group">
-  				<label for="email">Email address:</label>
- 					 <input type="email" class="form-control" id="email">
-				</div>
-				<div class="checkbox">
-				    <label><input type="checkbox"> Remember me</label>
-				</div>
-			</form>
-		</div>
+<body class="doctor_register_body">
+	<div class="container-fluid">
+	  <div class="register_container">
+
+		<!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
+		{% if first %}
+
+			<div class="panel panel-primary">
+			  <div class="panel-heading padded_container">
+			    Doctor registration
+			  </div>
+		      
+		      <div class="panel-body">
+			    <form method="post" class="form">
+			   	  {% csrf_token %}
+			          
+			      <div class="info_container bg-info">
+			      	Please, provide us some basic information.
+			      </div>
+						
+				  <div class="form-group">
+					<label for="first_name">First name:</label>
+					<input type="text" class="form-control" id="first_name" required>
+				  </div>
+					
+				  <div class="form-group">
+					<label for="last_name">Last name:</label>
+					<input type="text" class="form-control" id="last_name" required>
+				  </div>	
+					
+				  <div class="form-group">
+					<label for="license">License number:</label>
+					<input type="text" class="form-control" name="license" required>
+				  </div>
+					
+				  <div class="form-group">
+				  	<label for="hospital">Hospital:</label>
+					<input type="text" class="form-control" id="hospital" required>
+				  </div>
+
+				  <div class="form-group">
+		            <button type="submit" class="form-control btn btn-primary">Continue</button>
+		          </div>       
+
+			    </form>
+			  </div>
+			</div>
+
+			<!-- ALREADY REGISTERED ? -->
+		  	<div class="panel panel-primary">
+			  <div class="padded_container">
+			    Already registered? <a href="/doctors/login">Log in</a>
+			  </div>
+			</div>
+
+		<!-- REGISTER FORM: SECOND PERSONAL INFO -->
+		{% elif second %}
+		
+			<div class="panel panel-primary">
+			  <div class="panel-heading padded_container">
+			    Doctor registration
+			  </div>
+		      
+		      <div class="panel-body">
+			    <form method="post" class="form">
+			   	  {% csrf_token %}
+			      
+			      <div class="info_container bg-info">
+			      	Could you give us some more information?
+			      </div>
+					
+				  <div class="form-group">
+					<label for="age">Birth year:</label>
+					<select class="form-control" id="gender">
+					  <option></option>
+					  {% for year in years %}
+					    <option>{{ year }}</option>
+					  {% endfor %}
+					</select>
+				  </div>
+
+				  <div class="form-group">
+					<label for="experience">Years of experience:</label>
+					<select class="form-control" id="experience">
+					  <option>0 - 5</option>
+					  <option>5 - 10</option>
+					  <option>10 - 20</option>
+					  <option>20+</option>
+					</select>
+				  </div>
+					
+				  <div class="form-group">
+					<label for="gender">Gender:</label>
+					<select class="form-control" id="gender">
+					  <option>Not given</option>
+					  <option>Male</option>
+					  <option>Female</option>
+					</select>
+				  </div>
+					
+				  <div class="form-group">
+					<label for="country">Country:</label>
+					<select class="form-control input-medium bfh-countries" data-country="FI"></select>
+				  </div> 
+
+				  <div class="form-group">
+		            <button type="submit" class="form-control btn btn-primary">Continue</button>
+		          </div>       
+
+			    </form>
+			  </div>
+			</div>
+
+		<!-- REGISTER FORM: THIRD USER AND PASSWORD -->
+		{% elif third %}
+
+			<div class="panel panel-primary">
+			  <div class="panel-heading padded_container">
+			    Doctor registration
+			  </div>
+		      
+		      <div class="panel-body">
+			    <form method="post" class="form">
+			   	  {% csrf_token %}
+
+			   	  <div class="info_container bg-info">
+			      	Finally, choose a username and password.
+			      </div>
+
+		          <div class="form-group">
+		    		<label for="username">Username:</label>
+		   			<input type="text" class="form-control" id="username">
+				  </div>
+						
+				  <div class="form-group">
+					<label for="mail">Email:</label>
+					<input type="mail" class="form-control" id="mail">
+				  </div>
+					
+				  <div class="form-group">
+					<label for="password">Password:</label>
+					<span style="float:right;"><i><small>Use at least 8 characters</small></i></span>
+					<input type="password" class="form-control" id="password">
+				  </div>	
+					
+				  <div class="form-group">
+					<label for="confirm_password">Confirm password:</label>
+					<input type="password" class="form-control" id="confirm_password">
+				  </div>
+
+				  <div class="form-group">
+		            <button type="submit" class="form-control btn btn-success">Complete registration</button>
+		          </div>       
+
+			    </form>
+			  </div>
+			</div>
+
+		{% endif %}
+
+	  </div>
 	</div>
+
+	<script type="text/javascript">
+        $(function () {
+            $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+            });
+        });
+    </script>
+
+</body>
 
 {% endblock body %}
