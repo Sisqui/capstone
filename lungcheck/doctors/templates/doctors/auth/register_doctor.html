@@ -13,8 +13,8 @@
 	<div class="container-fluid">
 	  <div class="register_container">
 
-		{% if first %}
 		<!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
+		{% if first %}
 
 			<div class="panel panel-primary">
 			  <div class="panel-heading padded_container">
@@ -30,23 +30,23 @@
 			      </div>
 						
 				  <div class="form-group">
-					<label for="first_name">First name:</label>
-					<input type="text" class="form-control" id="first_name" required>
+					<label>First name:</label>
+					<input type="text" class="form-control" name="first_name" required>
 				  </div>
 					
 				  <div class="form-group">
-					<label for="last_name">Last name:</label>
-					<input type="text" class="form-control" id="last_name" required>
+					<label>Last name:</label>
+					<input type="text" class="form-control" name="last_name" required>
 				  </div>	
 					
 				  <div class="form-group">
-					<label for="license">License number:</label>
+					<label>License number:</label>
 					<input type="text" class="form-control" name="license" required>
 				  </div>
 					
 				  <div class="form-group">
-				  	<label for="hospital">Hospital:</label>
-					<input type="text" class="form-control" id="hospital" required>
+				  	<label>Hospital:</label>
+					<input type="text" class="form-control" name="hospital" required>
 				  </div>
 
 				  <div class="form-group">
@@ -64,8 +64,8 @@
 			  </div>
 			</div>
 
-		{% elif second %}
 		<!-- REGISTER FORM: SECOND PERSONAL INFO -->
+		{% elif second %}
 		
 			<div class="panel panel-primary">
 			  <div class="panel-heading padded_container">
@@ -81,10 +81,10 @@
 			      </div>
 					
 				  <div class="form-group">
-					<label for="birth_year">Birth year:</label>
-					<select class="form-control" id="birth_year">
+					<label>Birth year:</label>
+					<select class="form-control" name="birth_year">
 					  <option></option>
-					  {% for year in Years %}
+					  {% for year in years %}
 					    <option>{{ year }}</option>
 					  {% endfor %}
 					</select>
@@ -92,7 +92,7 @@
 
 				  <div class="form-group">
 					<label for="experience">Years of experience:</label>
-					<select class="form-control" id="experience">
+					<select class="form-control" name="experience">
 					  <option>0 - 5</option>
 					  <option>5 - 10</option>
 					  <option>10 - 20</option>
@@ -101,8 +101,8 @@
 				  </div>
 					
 				  <div class="form-group">
-					<label for="gender">Gender:</label>
-					<select class="form-control" id="gender">
+					<label>Gender:</label>
+					<select class="form-control" name="gender">
 					  <option>Not given</option>
 					  <option>Male</option>
 					  <option>Female</option>
@@ -110,8 +110,8 @@
 				  </div>
 					
 				  <div class="form-group">
-					<label for="country">Country:</label>
-					<select class="form-control input-medium bfh-countries" data-country="FI"></select>
+					<label>Country:</label>
+					<select class="form-control input-medium bfh-countries" data-country="FI" name="country"></select>
 				  </div> 
 
 				  <div class="form-group">
@@ -122,8 +122,8 @@
 			  </div>
 			</div>
 
-		{% elif third %}
 		<!-- REGISTER FORM: THIRD USER AND PASSWORD -->
+		{% elif third %}
 
 			<div class="panel panel-primary">
 			  <div class="panel-heading padded_container">
@@ -139,24 +139,24 @@
 			      </div>
 
 		          <div class="form-group">
-		    		<label for="username">Username:</label>
-		   			<input type="text" class="form-control" id="username">
+		    		<label>Username:</label>
+		   			<input type="text" class="form-control" name="username">
 				  </div>
 						
 				  <div class="form-group">
-					<label for="mail">Email:</label>
-					<input type="mail" class="form-control" id="mail">
+					<label>Email:</label>
+					<input type="mail" class="form-control" name="mail">
 				  </div>
 					
 				  <div class="form-group">
-					<label for="password">Password:</label>
+					<label>Password:</label>
 					<span style="float:right;"><i><small>Use at least 8 characters</small></i></span>
-					<input type="password" class="form-control" id="password">
+					<input type="password" class="form-control" name="password">
 				  </div>	
 					
 				  <div class="form-group">
-					<label for="confirm_password">Confirm password:</label>
-					<input type="password" class="form-control" id="confirm_password">
+					<label>Confirm password:</label>
+					<input type="password" class="form-control" name="confirm_password">
 				  </div>
 
 				  <div class="form-group">
@@ -171,6 +171,15 @@
 
 	  </div>
 	</div>
+
+	<script type="text/javascript">
+        $(function () {
+            $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+            });
+        });
+    </script>
 
 </body>
 

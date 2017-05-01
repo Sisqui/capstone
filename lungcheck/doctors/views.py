@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.http import Http404
+from django.http import Http404, HttpResponse
 
 from datetime import datetime
+#from logging import getLogger
+#from var_dump import var_dump
+
+#logger = getLogger("CONSOLE")
+
+# Use by logger.error(var_dump(****))
+# For everything in post: logger.error(var_dump(dict(request.POST.lists())))
 
 # Doctor login
 def doctor_login(request) :
@@ -51,7 +58,7 @@ def doctor_register(request) :
 	context = {}
 
 	# GOTO next step
-	if request.method and request.method == 'POST' :
+	if request.POST and request.method == 'POST' :
 		# FINISHED
 		if 'username' in request.POST :
 			return HttpResponse("Registrating...")
