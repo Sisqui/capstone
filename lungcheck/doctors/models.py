@@ -24,7 +24,7 @@ class Doctor(models.Model) :
 		User, 
 		on_delete=models.CASCADE
 	)
-	age = models.IntegerField(
+	birth_year = models.IntegerField(
 		null=True, 
 		blank=True,
 	)
@@ -47,6 +47,14 @@ class Doctor(models.Model) :
 		max_length=100,
 		null=True,
 		blank=True
+	)
+	mail_code = models.CharField(
+		max_length=20,
+		null=True,
+		blank=True
+	)
+	mail_confirmed = models.BooleanField(
+		default=False
 	)
 	validated = models.BooleanField(
 		default=False
