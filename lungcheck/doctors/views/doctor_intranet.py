@@ -1,3 +1,5 @@
+from django.shortcuts import render, redirect
+from django.http import Http404
 
 # Doctor intranet
 def doctor_intranet(request) :
