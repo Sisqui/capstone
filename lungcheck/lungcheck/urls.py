@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='lungcheck/index.html'), name="home"),
 
     # Redirect to doctor pages
-    url(r'^doctors/', include('doctors.urls')),
+    url(r'^app/', include('doctors.urls')),
 
     # Admin page
     url(r'^admin/', admin.site.urls),

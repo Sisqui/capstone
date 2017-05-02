@@ -13,10 +13,7 @@
 	<div class="container-fluid">
 	  <div class="register_container">
 
-		<!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
-		{% if first %}
-
-			<div class="panel panel-primary">
+	  	<div class="panel panel-primary">
 			  <div class="panel-heading padded_container">
 			    Doctor registration
 			  </div>
@@ -24,10 +21,22 @@
 		      <div class="panel-body">
 			    <form method="post" class="form">
 			   	  {% csrf_token %}
-			          
+			      
+			      {% if message %}
 			      <div class="info_container bg-info">
-			      	Please, provide us some basic information.
+			      	{{ message }}
 			      </div>
+			      {% endif %}
+
+			      <!-- DISPLAY ERROR MESSAGES -->
+			      {% if error %}
+			      	<div class="info_container bg-info">
+			      	{{ error }}
+			      </div>
+			      {% endif %}
+
+				  <!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
+				  {% if first %}
 						
 				  <div class="form-group">
 					<label>First name:</label>
@@ -53,32 +62,8 @@
 		            <button type="submit" class="form-control btn btn-primary">Continue</button>
 		          </div>       
 
-			    </form>
-			  </div>
-			</div>
-
-			<!-- ALREADY REGISTERED ? -->
-		  	<div class="panel panel-primary">
-			  <div class="padded_container">
-			    Already registered? <a href="/doctors/login">Log in</a>
-			  </div>
-			</div>
-
-		<!-- REGISTER FORM: SECOND PERSONAL INFO -->
-		{% elif second %}
-		
-			<div class="panel panel-primary">
-			  <div class="panel-heading padded_container">
-			    Doctor registration
-			  </div>
-		      
-		      <div class="panel-body">
-			    <form method="post" class="form">
-			   	  {% csrf_token %}
-			      
-			      <div class="info_container bg-info">
-			      	Could you give us some more information?
-			      </div>
+				  <!-- REGISTER FORM: SECOND PERSONAL INFO -->
+				  {% elif second %}
 					
 				  <div class="form-group">
 					<label>Birth year:</label>
@@ -116,27 +101,10 @@
 
 				  <div class="form-group">
 		            <button type="submit" class="form-control btn btn-primary">Continue</button>
-		          </div>       
+		          </div>
 
-			    </form>
-			  </div>
-			</div>
-
-		<!-- REGISTER FORM: THIRD USER AND PASSWORD -->
-		{% elif third %}
-
-			<div class="panel panel-primary">
-			  <div class="panel-heading padded_container">
-			    Doctor registration
-			  </div>
-		      
-		      <div class="panel-body">
-			    <form method="post" class="form">
-			   	  {% csrf_token %}
-
-			   	  <div class="info_container bg-info">
-			      	Finally, choose a username and password.
-			      </div>
+			  	  <!-- REGISTER FORM: THIRD USER AND PASSWORD -->
+				  {% elif third %}
 
 		          <div class="form-group">
 		    		<label>Username:</label>
@@ -163,7 +131,18 @@
 		            <button type="submit" class="form-control btn btn-success">Complete registration</button>
 		          </div>       
 
-			    </form>
+				  {% endif %}
+
+				</form>
+			  </div>
+			</div>
+
+		{% if first %}
+
+			<!-- ALREADY REGISTERED ? -->
+		  	<div class="panel panel-primary">
+			  <div class="padded_container">
+			    Already registered? <a href="/doctors/login">Log in</a>
 			  </div>
 			</div>
 
