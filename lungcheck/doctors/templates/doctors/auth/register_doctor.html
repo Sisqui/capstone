@@ -22,18 +22,20 @@
 			    <form method="post" class="form">
 			   	  {% csrf_token %}
 			      
-			      {% if message %}
+			   	  <!-- DISPLAY ERROR MESSAGES -->
+			      {% if error %}
+			      	<div class="info_container bg-danger">
+			      	{{ error }}
+			      </div>
+
+			      <!-- DISPLAY HEADER MESSAGE -->
+			      {% elif message %}
 			      <div class="info_container bg-info">
 			      	{{ message }}
 			      </div>
 			      {% endif %}
 
-			      <!-- DISPLAY ERROR MESSAGES -->
-			      {% if error %}
-			      	<div class="info_container bg-info">
-			      	{{ error }}
-			      </div>
-			      {% endif %}
+			      
 
 				  <!-- REGISTER FORM: FIRST INFO ABOUT HOSPITAL -->
 				  {% if first %}
@@ -106,25 +108,30 @@
 			  	  <!-- REGISTER FORM: THIRD USER AND PASSWORD -->
 				  {% elif third %}
 
+				  {% if error_code == 0 %}
+				  <div class="form-group has-error has-feedback">
+				  {% else %}
 		          <div class="form-group">
 		    		<label>Username:</label>
-		   			<input type="text" class="form-control" name="username">
+		    		<span style="float:right;"><i><small>Use at least 4 characters</small></i></span>
+		   			<input type="text" class="form-control" name="username" required>
 				  </div>
+				  {% endif %}
 						
 				  <div class="form-group">
 					<label>Email:</label>
-					<input type="mail" class="form-control" name="mail">
+					<input type="mail" class="form-control" name="mail" required>
 				  </div>
 					
 				  <div class="form-group">
 					<label>Password:</label>
 					<span style="float:right;"><i><small>Use at least 8 characters</small></i></span>
-					<input type="password" class="form-control" name="password">
+					<input type="password" class="form-control" name="password" required>
 				  </div>	
 					
 				  <div class="form-group">
 					<label>Confirm password:</label>
-					<input type="password" class="form-control" name="confirm_password">
+					<input type="password" class="form-control" name="confirm_password" required>
 				  </div>
 
 				  <div class="form-group">
