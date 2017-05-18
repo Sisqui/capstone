@@ -32,7 +32,7 @@
 
 .register_container {
 	padding-top: 10px;
-	width : 70%;
+	width : 90%;
 	margin : 0 auto;
 }
 
@@ -115,12 +115,5 @@
     margin : 0 0 16px 0;
     text-align: center;
 }
-
-.register_logo {
-	width: 45%;
-    border-radius: 50%;
-}
-
-
 
 /* INTRANET CSS */
