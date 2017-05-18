@@ -55,6 +55,9 @@ def register_user(request) :
 	
 	# Get new data
 	new_data = dict(request.POST.lists())
+	username = new_data["username"][0]
+	password = new_data["password"][0]
+	mail = new_data["mail"][0]
 
 	# Check the data
 	error, error_code = field_errors(new_data)
@@ -62,8 +65,8 @@ def register_user(request) :
 		return third_page(request, error, error_code)
 	
 	# If corrent create new user
-	
-	return HttpResponse("HEY")
+	User.objects.create_user(username, email=mail, password=password)
+	return HttpResponse("Created")
 
 
 # Doctor register
