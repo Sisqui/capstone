@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404
+from django.views.decorators.csrf import csrf_exempt
 
+from json import dumps
 from datetime import datetime
 
 def first_page(request) :
@@ -66,7 +68,7 @@ def register_user(request) :
 	
 	# If corrent create new user
 	User.objects.create_user(username, email=mail, password=password)
-	return HttpResponse("Created")
+	return HttpResponse(request.session["first_name"])
 
 
 # Doctor register
@@ -86,3 +88,79 @@ def doctor_register(request) :
 			
 	# First time in
 	return first_page(request)
+
+# Json error for api page
+def json_error(error_code) :
+	err = dumps({"ERROR" : error_code})
+	return HttpResponse(err, content_type='application/json')
+
+def json_user(user) : 
+	userdata = {
+			"username": user.username,
+			"first_name": user.first_name,
+			"last_name" : user.last_name,
+			"mail" : user.email,
+			"is_active" : user.is_active,
+			"last_login" : user.last_login,
+			"id" : user.id,
+		}
+	jsondata = dumps(userdata)
+	return HttpResponse(jsondata, content_type='application/json')
+
+# API sign up for app
+@csrf_exempt
+def api_register(request) :
+
+	if request.POST and request.method == 'POST' :
+		if not 'username' in request.POST :
+			return json_error("No username given")
+		if not 'password' in request.POST :
+			return json_error("No password given")
+		if not 'mail' in request.POST :
+			return json_error("No mail given")
+
+		# Get data
+		data = dict(request.POST.lists())
+		username = data["username"][0]
+		password = data["password"][0]
+		mail = data["mail"][0]
+
+		# Check the data
+		# TODO
+		
+		# If corrent create new user
+		newuser = User.objects.create_user(username, email=mail, password=password)		
+		return json_user(newuser)
+
+	else :
+		return json_error("No POST")
+
+# API sign in for app
+@csrf_exempt
+def api_login(request) :
+
+	if request.POST and request.method == 'POST' :
+		if not 'username' in request.POST :
+			return json_error("No username given")
+		if not 'password' in request.POST :
+			return json_error("No password given")
+
+		# Get data
+		data = dict(request.POST.lists())
+		username = data["username"][0]
+		password = data["password"][0]
+
+		# Check the data
+		# TODO
+		
+		# If corrent create new user
+		user = authenticate(username=username, password=password)
+		if user :
+			# login(request, user)
+			return json_user(user)
+		else :
+			return json_error("Incorrect login credentials")
+		
+
+	else :
+		return "NO POST"
