@@ -4,13 +4,142 @@
 {% load static %}
 
 {% block title %}
-
 	Patient register
-
-{% enblock title %}
+{% endblock title %}
 
 {% block body %}
 
-	Patient register
+<body class="doctor_register_body">
+	<div class="container-fluid">
+	  <div class="register_container">
+
+	  	<div class="panel panel-primary">
+			  <div class="panel-heading padded_container">
+			    Patient registration
+			  </div>
+		      
+		      <div class="panel-body">
+			    <form method="post" class="form">
+			   	  {% csrf_token %}
+			      
+			   	  <!-- DISPLAY ERROR MESSAGES -->
+			      {% if error %}
+			      	<div class="info_container bg-danger">
+			      	{{ error }}
+			      </div>
+
+			      <!-- DISPLAY HEADER MESSAGE -->
+			      {% elif message %}
+			      <div class="info_container bg-info">
+			      	{{ message }}
+			      </div>
+			      {% endif %}
+
+			      
+
+				  <!-- REGISTER FORM: FIRST BASIC INFO -->
+				  {% if first %}
+						
+				  <div class="form-group">
+					<label>First name:</label>
+					<input type="text" class="form-control" name="first_name" required>
+				  </div>
+					
+				  <div class="form-group">
+					<label>Last name:</label>
+					<input type="text" class="form-control" name="last_name" required>
+				  </div>
+
+		          <div class="form-group">
+					<label>Birth year:</label>
+					<select class="form-control" name="birth_year">
+					  <option></option>
+					  {% for year in years %}
+					    <option>{{ year }}</option>
+					  {% endfor %}
+					</select>
+				  </div>
+					
+				  <div class="form-group">
+					<label>Gender:</label>
+					<select class="form-control" name="gender">
+					  <option>Not given</option>
+					  <option>Male</option>
+					  <option>Female</option>
+					</select>
+				  </div>
+					
+				  <div class="form-group">
+					<label>Country:</label>
+					<select class="form-control input-medium bfh-countries" data-country="FI" name="country"></select>
+				  </div> 
+
+				  <div class="form-group">
+		            <button type="submit" class="form-control btn btn-primary">Continue</button>
+		          </div>
+
+				  <!-- REGISTER FORM: FINAL USERNAME AND PASSWORD -->
+				  {% elif second %}
+
+				  {% if error_code == 0 %}
+				  <div class="form-group has-error has-feedback">
+				  {% else %}
+		          <div class="form-group">
+		    		<label>Username:</label>
+		    		<span style="float:right;"><i><small>Use at least 4 characters</small></i></span>
+		   			<input type="text" class="form-control" name="username" required>
+				  </div>
+				  {% endif %}
+						
+				  <div class="form-group">
+					<label>Email:</label>
+					<input type="mail" class="form-control" name="mail" required>
+				  </div>
+					
+				  <div class="form-group">
+					<label>Password:</label>
+					<span style="float:right;"><i><small>Use at least 8 characters</small></i></span>
+					<input type="password" class="form-control" name="password" required>
+				  </div>	
+					
+				  <div class="form-group">
+					<label>Confirm password:</label>
+					<input type="password" class="form-control" name="confirm_password" required>
+				  </div>
+
+				  <div class="form-group">
+		            <button type="submit" class="form-control btn btn-success">Complete registration</button>
+		          </div>       
+
+				  {% endif %}
+
+				</form>
+			  </div>
+			</div>
+
+		{% if first %}
+
+			<!-- ALREADY REGISTERED ? -->
+		  	<div class="panel panel-primary">
+			  <div class="padded_container">
+			    Already registered? <a href="app/patients/login">Log in</a>
+			  </div>
+			</div>
+
+		{% endif %}
+
+	  </div>
+	</div>
+
+	<script type="text/javascript">
+        $(function () {
+            $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+            });
+        });
+    </script>
+
+</body>
 
 {% endblock body %}

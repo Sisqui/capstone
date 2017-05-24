@@ -1,37 +1,58 @@
 
 {% extends "doctors/base.html" %}
 {% load static %}
+
+{% block title %}
+  Doctor login
+{% endblock title %}
+
+
 {% block body %}
 
-<body>
+<body class="doctor_login_body">
   <div class="container-fluid">
-
-    <link rel="stylesheet" type="text/css" href="{% static 'doctors/style/login.css' %}" />
-
-    <div class="centercontainer">
-      <form method="post">
-        {% csrf_token %}
-        
-        <div class="imgcontainer">
-          <img src="{% static 'doctors/pix/patient_login_logo.png' %}" alt="Patient" class="avatar">
+    <div class="login_container">
+      <div class="panel panel-primary">
+        <div class="panel-heading padded_container">
+          Patient login
         </div>
+        <div class="panel-body">
+          <form method="post">
+            {% csrf_token %}
+            
+            <div class="logo_container">
+              <img src="{% static 'doctors/pix/patient_login_logo.png' %}" alt="Patients" class="login_logo">
+            </div>
 
-        <div class="container">
-          <input type="text" placeholder="Username" name="username" required>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username" id="username" required>
+            </div>
+            
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password" id="password"required>
+            </div>
+            
+            <div class="form-group">
+              <button type="submit" class="form-control btn btn-success">Login</button>
+            </div>        
 
-          <input type="password" placeholder="Password" name="password" required>
-              
-          <button type="submit">Login</button>
-          <input type="checkbox" checked="checked"> Remember me
+          </form>
         </div>
+      </div>
 
-        <div class="container" style="background-color:#f1f1f1">
-          <button type="button" class="cancelbtn">Register</button>
-          <span class="psw">Forgot <a href="#">password?</a></span>
+      <div class="panel panel-primary">
+        <div class="padded_container">
+        New here? <a href="/app/patients/register">Create an account</a>
+        </br></br>
+        <a href="/app/forgot_password">Forgot password?</a>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </body>
 
 {% endblock body %}
+
+{% block scripts %}
+
+{% endblock %}
