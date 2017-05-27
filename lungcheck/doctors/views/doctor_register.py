@@ -79,9 +79,11 @@ def register_user(request) :
 		return third_page(request, error, error_code)
 	
 	# If corrent create new user
-	auth_user = User.objects.create_user(username, email=mail, password=password)
-	doctor = Doctor(
-		user=auth_user,
+	
+	doctor = Doctor.objects.create_doctor(
+		username = username,
+		password = password,
+		mail=mail,
 		birth_year=birth_year,
 		gender=gender,
 		country=country,
