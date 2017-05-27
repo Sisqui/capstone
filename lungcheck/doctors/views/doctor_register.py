@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 
+from ..models import Doctor
+
 from json import dumps
 from datetime import datetime
 
@@ -17,10 +19,10 @@ def second_page(request) :
 	context = {}
 	# Get form data and merge it with old data
 	new_data = dict(request.POST.lists())
-	request.session["first_name"] = new_data["first_name"]
-	request.session["last_name"] = new_data["last_name"]
-	request.session["hospital"] = new_data["hospital"]
-	request.session["license"] = new_data["license"]
+	request.session["first_name"] = new_data["first_name"][0]
+	request.session["last_name"] = new_data["last_name"][0]
+	request.session["hospital"] = new_data["hospital"][0]
+	request.session["license"] = new_data["license"][0]
 
 	now = datetime.now()
 	context["message"] = "Could you give us some more information?"
@@ -32,9 +34,9 @@ def third_page(request, error="", error_code=0) :
 	context = {}
 	# Get form data and merge it with old data
 	new_data = dict(request.POST.lists())
-	request.session["birth_year"] = new_data["birth_year"]
-	request.session["gender"] = new_data["gender"]
-	request.session["country"] = new_data["country"]
+	request.session["birth_year"] = new_data["birth_year"][0]
+	request.session["gender"] = new_data["gender"][0]
+	request.session["country"] = new_data["country"][0]
 
 	if error :
 		context["error"] = error
@@ -61,14 +63,33 @@ def register_user(request) :
 	password = new_data["password"][0]
 	mail = new_data["mail"][0]
 
+	# Retrieve the data from the session variables
+	first_name = request.session['first_name']
+	last_name = request.session['last_name']
+	license = request.session['license']
+	hospital = request.session['hospital']
+	license = request.session['license']
+	birth_year = request.session['birth_year']
+	gender = request.session['gender']
+	country = request.session['country']
+
 	# Check the data
 	error, error_code = field_errors(new_data)
 	if error :
 		return third_page(request, error, error_code)
 	
 	# If corrent create new user
-	User.objects.create_user(username, email=mail, password=password)
-	return HttpResponse(request.session["first_name"])
+	auth_user = User.objects.create_user(username, email=mail, password=password)
+	doctor = Doctor(
+		user=auth_user,
+		birth_year=birth_year,
+		gender=gender,
+		country=country,
+		hospital=hospital,
+		license=license)
+	doctor.save()
+
+	return HttpResponse(doctor.birth_year)
 
 
 # Doctor register

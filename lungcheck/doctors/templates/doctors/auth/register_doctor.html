@@ -70,9 +70,9 @@
 				  <div class="form-group">
 					<label>Birth year:</label>
 					<select class="form-control" name="birth_year">
-					  <option></option>
+					  <option value=0></option>
 					  {% for year in years %}
-					    <option>{{ year }}</option>
+					    <option value={{ year }}>{{ year }}</option>
 					  {% endfor %}
 					</select>
 				  </div>
@@ -90,9 +90,9 @@
 				  <div class="form-group">
 					<label>Gender:</label>
 					<select class="form-control" name="gender">
-					  <option>Not given</option>
-					  <option>Male</option>
-					  <option>Female</option>
+					  <option value='O'>Not given</option>
+					  <option value='M'>Male</option>
+					  <option value='F'>Female</option>
 					</select>
 				  </div>
 					
