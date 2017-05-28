@@ -8,11 +8,13 @@ from json import dumps
 #	Create function that first creates the user
 #
 class DoctorManager(models.Manager) :
-	def create_doctor(self, username, password, mail, birth_year, gender, country, hospital, license) :
+	def create_doctor(self, username, password, mail, first_name='', last_name='', birth_year='', gender='', country='', hospital='', license='') :
 		auth_user = User.objects.create_user(
 			username, 
 			email=mail, 
-			password=password
+			password=password,
+			first_name=first_name,
+			last_name=last_name
 		)
 		doctor = self.create(
 			user=auth_user,
