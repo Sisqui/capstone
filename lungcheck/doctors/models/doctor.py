@@ -1,7 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
+from datetime import datetime
+from django.core.mail import send_mail
 
 from json import dumps
+from random import getrandbits
+from datetime import datetime
 
 #
 # Doctor manager
@@ -14,8 +18,10 @@ class DoctorManager(models.Manager) :
 			email=mail, 
 			password=password,
 			first_name=first_name,
-			last_name=last_name
+			last_name=last_name,
+			last_login=datetime.now()
 		)
+
 		doctor = self.create(
 			user=auth_user,
 			birth_year=birth_year,
@@ -24,6 +30,9 @@ class DoctorManager(models.Manager) :
 			hospital=hospital,
 			license=license
 		)
+
+		doctor.send_activation_mail()
+
 		return doctor
 
 #
@@ -72,7 +81,7 @@ class Doctor(models.Model) :
 		blank=True
 	)
 	mail_code = models.CharField(
-		max_length=20,
+		max_length=200,
 		null=True,
 		blank=True
 	)
@@ -90,8 +99,6 @@ class Doctor(models.Model) :
 					self.user.get_full_name, 
 					self.license)
 
-	#def clean(self) :
-
 	def json(self) :
 		data = {
 			"user_id" : self.user.id,
@@ -100,7 +107,8 @@ class Doctor(models.Model) :
 			"last_name" : self.user.last_name,
 			"mail" : self.user.email,
 			"is_active" : self.user.is_active,
-			"last_login" : self.user.last_login,
+			"last_login" : self.user.last_login.strftime("%a %w"),
+			"date_joined" : self.user.date_joined.strftime(""),
 			
 			"doctor_id" : self.id,
 			"country" : self.country,
@@ -113,3 +121,15 @@ class Doctor(models.Model) :
 			"validated" : self.validated
 		}
 		return dumps(data)
+
+	def send_activation_mail(self) :
+		code = getrandbits(128)
+		self.mail_code = code
+		url = "lungcheck.tk/app/confirm_mail?id="+str(self.user.id)+"&code="+str(code)
+		send_mail(
+		    'Activate your account',
+		    'Click in the following link to activate your account.\n\n'+url,
+		    'lungcheckturku@gmail.com',
+		    [self.user.email],
+		    fail_silently=True,
+		)
