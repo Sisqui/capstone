@@ -125,7 +125,7 @@ class Doctor(models.Model) :
 	def send_activation_mail(self) :
 		code = getrandbits(128)
 		self.mail_code = code
-		url = "lungcheck.tk/app/confirm_mail?id="+str(self.user.id)+"&code="+str(code)
+		url = "lungcheck.tk/app/confirm_mail?uid="+str(self.user.id)+"&code="+str(code)
 		send_mail(
 		    'Activate your account',
 		    'Click in the following link to activate your account.\n\n'+url,
