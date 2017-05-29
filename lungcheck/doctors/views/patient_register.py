@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 from json import dumps
 from datetime import datetime
@@ -68,4 +69,52 @@ def patient_register(request) :
 			
 	# First time in
 	return first_page(request)
+
+
+# API sign up for app
+@csrf_exempt
+def patient_api_register(request) :
+
+	if request.POST and request.method == 'POST' :
+
+		if not 'username' in request.POST :
+			return json_error("No username given")
+		elif len(request.POST.get('username')) < 4 :
+			return json_error("Username must be at least 4 characters long")
+
+		if not 'password' in request.POST :
+			return json_error("No password given")
+		elif len(request.POST.get('password')) < 8 :
+			return json_error("Password must be at least 8 characters long")
+
+		if not 'mail' in request.POST :
+			return json_error("No mail given")
+
+		# Create a new doctor object
+		try :
+			doctor = Doctor.objects.create_doctor(
+				username = request.POST.get('username'),
+				password = request.POST.get('password'),
+				mail=request.POST.get('mail'),
+				first_name = request.POST.get('first_name', ''),
+				last_name = request.POST.get('last_name', ''),
+				birth_year=request.POST.get('birth_year', 0),
+				gender=request.POST.get('gender', ''),
+				country=request.POST.get('country', ''),
+				hospital=request.POST.get('hospital', ''),
+				license=request.POST.get('license', '')
+			)
+		except IntegrityError :
+			return json_error("Username already exists")
+		
+		# If corrent create new user	
+		doctor.save()
+
+		# Authenticate and login to update last_login
+
+		# Return data
+		return HttpResponse(doctor.json(), content_type='application/json')
+
+	else :
+		return json_error("No POST")
 

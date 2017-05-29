@@ -19,6 +19,7 @@ urlpatterns = [
 	url(r'^patients/intranet/$', views.patient_intranet, name="patient_intranet"),
 
 	url(r'^forgot_password/$', views.forgot_password, name="forgot_password"),
+	url(r'^new_password/$', views.forgot_password, name="new_password"),
 	url(r'^confirm_mail/$', views.confirm_mail, name="confirm_mail"),
 ]
 

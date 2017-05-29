@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
 
 # Doctor login
 def doctor_login(request) :
@@ -20,7 +21,34 @@ def doctor_login(request) :
 			login(request, user)
 			return redirect(doctor_intranet)
 		else :
-			# Incorrect details TODO
-			return render(request, 'doctors/auth/login_doctor.html')
+			context = {}
+			context['error'] = "Incorrect user and/or password"
+			return render(request, 'doctors/auth/login_doctor.html', context)
 	else :
 		return render(request, 'doctors/auth/login_doctor.html')
+
+# API sign in for app
+@csrf_exempt
+def api_login(request) :
+
+	if request.POST and request.method == 'POST' :
+		if not 'username' in request.POST :
+			return json_error("No username given")
+		if not 'password' in request.POST :
+			return json_error("No password given")
+
+		# Get data
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		
+		# Authenticate and login
+		user = authenticate(username=username, password=password)
+		if user and user.doctor :
+			login(request, user)
+			return HttpResponse(user.doctor.json(), content_type='application/json')
+		else :
+			return json_error("Incorrect login credentials for doctor")
+		
+
+	else :
+		return json_error("No post")
