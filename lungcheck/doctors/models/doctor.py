@@ -107,8 +107,8 @@ class Doctor(models.Model) :
 			"last_name" : self.user.last_name,
 			"mail" : self.user.email,
 			"is_active" : self.user.is_active,
-			"last_login" : self.user.last_login.strftime("%a %w"),
-			"date_joined" : self.user.date_joined.strftime(""),
+			"last_login" : self.user.last_login.strftime("%c"),
+			"date_joined" : self.user.date_joined.strftime("%c"),
 			
 			"doctor_id" : self.id,
 			"country" : self.country,
