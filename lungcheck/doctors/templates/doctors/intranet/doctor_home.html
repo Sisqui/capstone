@@ -12,34 +12,94 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="#">WebSiteName</a>
+		      <a class="navbar-brand" href="/">Lungcheck</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="#">Home</a></li>
 		        <li class="dropdown">
-		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patients<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="#">Page 1-1</a></li>
 		            <li><a href="#">Page 1-2</a></li>
 		            <li><a href="#">Page 1-3</a></li>
 		          </ul>
 		        </li>
-		        <li><a href="#">Page 2</a></li>
-		        <li><a href="#">Page 3</a></li>
+		        <li><a href="/app/intranet/notifications">Notifications</a></li>
+		        <li><a href="/app/intranet/recordings">Recordings</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-		        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My profile</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
 		      </ul>
 		    </div>
 		  </div>
 		</nav>
 
 		<div id=intranet>
-			
-			Hello, doctor {{ request.user.get_full_name }}.
-			Your license is {{ request.user.doctor.license }}
+
+			{% if notifications %}
+			<div class="panel panel-danger">
+				<div class="panel-heading padded_container">
+				  	Notifications
+				</div>
+				<div class="panel-body">
+					{% for notification in notifications %}
+						{% comment "TODO" %}
+					{% endfor %}
+				</div>
+			{% else %}
+			<div class="panel panel-success">
+				<div class="panel-heading padded_container">
+				  	Notifications
+				</div>
+				<div class="panel-body">
+					<p class=p_centered>Everything is fine</p>
+				</div>
+			{% endif %}
+			</div>
+
+			{% if recordiings %}
+			<div class="panel panel-warning">
+				<div class="panel-heading padded_container">
+				  	Last recordings
+				</div>
+				<div class="panel-body">
+					{% for recording in recordings %}
+						{% comment "TODO" %}
+					{% endfor %}
+				</div>
+			{% else %}
+			<div class="panel panel-success">
+				<div class="panel-heading padded_container">
+				  	Last recordings
+				</div>
+				<div class="panel-body">
+					<p class=p_centered>Your patients didn't record any sounds recently.</p>
+				</div>
+			{% endif %}
+			</div>
+
+			{% if patients %}
+			<div class="panel panel-info">
+				<div class="panel-heading padded_container">
+				  	Patients
+				</div>
+				<div class="panel-body">
+					{% for patient in patients %}
+						{% comment "TODO" %}
+					{% endfor %}
+				</div>
+			{% else %}
+			<div class="panel panel-default">
+				<div class="panel-heading padded_container">
+				  	Patients
+				</div>
+				<div class="panel-body">
+					<p class=p_centered>You don't have any patients assigned yet.</p>
+				</div>
+			{% endif %}
+			</div>
 
 			<h1>Doctor Intranet</h1>
 

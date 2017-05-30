@@ -2,27 +2,29 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
 
+import doctors
+
 # Doctor login
 def doctor_login(request) :
 
 	if request.user.is_authenticated :
 		try :
 			if request.user.doctor :
-				return redirect(doctor_intranet)
+				return redirect(doctors.views.doctor_intranet)
 		except :
 			pass
 
 	if request.method and request.method == 'POST' :
-		username = request.POST['username']
-		password = request.POST['password']
+		username = request.POST.get('username')
+		password = request.POST.get('password')
 		user = authenticate(username=username, password=password)
 		
 		if user :
 			login(request, user)
-			return redirect(doctor_intranet)
+			return redirect(doctors.views.doctor_intranet)
 		else :
 			context = {}
-			context['error'] = "Incorrect user and/or password"
+			context['error'] = "Incorrect username and/or password"
 			return render(request, 'doctors/auth/login_doctor.html', context)
 	else :
 		return render(request, 'doctors/auth/login_doctor.html')

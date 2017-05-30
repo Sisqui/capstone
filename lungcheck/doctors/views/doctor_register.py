@@ -100,7 +100,7 @@ def register_user(request) :
 
 
 	# Redirect to intranet
-	return HttpResponse(doctor.user.username)
+	return redirect(doctor_intranet)
 
 
 # Doctor register page

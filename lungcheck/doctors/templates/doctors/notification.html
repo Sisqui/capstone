@@ -1,0 +1,21 @@
+{% extends "doctors/base.html" %}
+{% load static %}
+{% block title %}
+		{{ page_title }}
+{% endblock %}
+{% block body %}
+
+<div class="info_center_container">
+	<div class="panel panel-danger">
+		<div class="panel-heading padded_container">
+		  	{{ title }}
+		</div>
+		<div class="panel-body">
+			<p p_centered>
+				{{ message }}
+			</p>
+		</div>
+	</div>
+</div>
+
+{% endblock body %}

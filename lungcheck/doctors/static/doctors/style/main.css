@@ -117,3 +117,33 @@
 }
 
 /* INTRANET CSS */
+
+
+
+/* GENERAL */
+
+.info_center_container {
+    width: 450px;
+    max-width: 90%;
+    height: 150px;
+    max-height: 90%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+@media (min-width: 1000px) {
+
+    .info_center_container {
+        padding-top: 200px;
+    }
+}
+
+
+.p_centered {
+    text-align: center;
+}
+
+.p_centered_red {
+    text-align: center;
+    color: red;
+}
