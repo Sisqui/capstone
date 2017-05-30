@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, Http404
 
 import doctors
+
+from json import dumps
+from datetime import datetime
 
 # Doctor login
 def doctor_login(request) :
@@ -28,6 +32,11 @@ def doctor_login(request) :
 			return render(request, 'doctors/auth/login_doctor.html', context)
 	else :
 		return render(request, 'doctors/auth/login_doctor.html')
+
+# Json error for api page
+def json_error(error_code) :
+	err = dumps({"ERROR" : error_code})
+	return HttpResponse(err, content_type='application/json')
 
 # API sign in for app
 @csrf_exempt
