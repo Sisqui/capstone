@@ -2,8 +2,8 @@
 {% load static %}
 {% block body %}
 
-<body>
-	<div class="container-fluid">
+<body class="doctor_intranet_body">
+	<div class="container">
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
@@ -16,20 +16,20 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#">Home</a></li>
+		        <li class="active"><a href="/app/intranet">Home</a></li>
 		        <li class="dropdown">
 		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Patients<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Page 1-1</a></li>
-		            <li><a href="#">Page 1-2</a></li>
-		            <li><a href="#">Page 1-3</a></li>
+		            <li><a href="#">Patient 1</a></li>
+		            <li><a href="#">Patient 2</a></li>
+		            <li><a href="#">Patient 3</a></li>
 		          </ul>
 		        </li>
 		        <li><a href="/app/intranet/notifications">Notifications</a></li>
 		        <li><a href="/app/intranet/recordings">Recordings</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My profile</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
 		      </ul>
 		    </div>
@@ -37,130 +37,86 @@
 		</nav>
 
 		<div id=intranet>
+			<div class="row">
+				<div class="col-sm-6">
 
-			{% if notifications %}
-			<div class="panel panel-danger">
-				<div class="panel-heading padded_container">
-				  	Notifications
+					{% if notifications %}
+					<div class="panel panel-danger">
+						<div class="panel-heading padded_container">
+						  	Notifications
+						</div>
+						<div class="panel-body">
+							{% for notification in notifications %}
+								
+							{% endfor %}
+						</div>
+					{% else %}
+					<div class="panel panel-success">
+						<div class="panel-heading padded_container">
+						  	Notifications
+						</div>
+						<div class="panel-body">
+							<p class=p_centered>Everything is fine</p>
+						</div>
+					{% endif %}
+					</div>
+
 				</div>
-				<div class="panel-body">
-					{% for notification in notifications %}
-						{% comment "TODO" %}
-					{% endfor %}
+				<div class="col-sm-6">
+
+					{% if recordings %}
+					<div class="panel panel-warning">
+						<div class="panel-heading padded_container">
+						  	Last recordings
+						</div>
+						<div class="panel-body">
+							{% for recording in recordings %}
+								
+							{% endfor %}
+						</div>
+					{% else %}
+					<div class="panel panel-success">
+						<div class="panel-heading padded_container">
+						  	Last recordings
+						</div>
+						<div class="panel-body">
+							<p class=p_centered>Your patients didn't record any sounds recently.</p>
+						</div>
+					{% endif %}
+					</div>
+
 				</div>
-			{% else %}
-			<div class="panel panel-success">
-				<div class="panel-heading padded_container">
-				  	Notifications
+				<div class="col-xs-12">
+
+					{% if patients %}
+					<div class="panel panel-info">
+						<div class="panel-heading padded_container">
+						  	Patients
+						</div>
+						<div class="panel-body">
+							{% for patient in patients %}
+								
+							{% endfor %}
+						</div>
+					{% else %}
+					<div class="panel panel-default">
+						<div class="panel-heading padded_container">
+						  	Patients
+						</div>
+						{% if patients %}
+
+						{% else %}
+						<div class="panel-body">
+							<p class=p_centered>You don't have any patients assigned yet.</p>
+						</div>
+						{% endif %}
+					{% endif %}
+					</div>
+
 				</div>
-				<div class="panel-body">
-					<p class=p_centered>Everything is fine</p>
-				</div>
-			{% endif %}
+
 			</div>
 
-			{% if recordiings %}
-			<div class="panel panel-warning">
-				<div class="panel-heading padded_container">
-				  	Last recordings
-				</div>
-				<div class="panel-body">
-					{% for recording in recordings %}
-						{% comment "TODO" %}
-					{% endfor %}
-				</div>
-			{% else %}
-			<div class="panel panel-success">
-				<div class="panel-heading padded_container">
-				  	Last recordings
-				</div>
-				<div class="panel-body">
-					<p class=p_centered>Your patients didn't record any sounds recently.</p>
-				</div>
-			{% endif %}
-			</div>
-
-			{% if patients %}
-			<div class="panel panel-info">
-				<div class="panel-heading padded_container">
-				  	Patients
-				</div>
-				<div class="panel-body">
-					{% for patient in patients %}
-						{% comment "TODO" %}
-					{% endfor %}
-				</div>
-			{% else %}
-			<div class="panel panel-default">
-				<div class="panel-heading padded_container">
-				  	Patients
-				</div>
-				<div class="panel-body">
-					<p class=p_centered>You don't have any patients assigned yet.</p>
-				</div>
-			{% endif %}
-			</div>
-
-			<h1>Doctor Intranet</h1>
-
-			<h2>Notifications</h2>
-			<table>
-				<tbody>
-					<tr>
-						<th style="width:50%">Message</th>
-						<th style="width:20%">Patient</th>
-						<th style="width:20%">Date</th>
-					</tr>
-					{% comment "TODO" %}
-					{% for notifications %}
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					{% endfor %}
-					{% endcomment %}
-				</tbody>
-			</table>
-
-			<h2>Last recordings</h2>
-			<table>
-				<tbody>
-					<tr>
-						<th style="width:50%">Report</th>
-						<th style="width:20%">Patient</th>
-						<th style="width:20%">Date</th>
-					</tr>
-					{% comment "TODO" %}
-					{% for last recordings %}
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					{% endfor %}
-					{% endcomment %}
-				</tbody>
-			</table>
-
-			<h2>Last active patients</h2>
-			<table>
-				<tbody>
-					<tr>
-						<th style="width:50%">Message</th>
-						<th style="width:30%">Last recording</th>
-					</tr>
-					{% comment "TODO" %}
-					{% for last recordings %}
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					{% endfor %}
-					{% endcomment %}
-				</tbody>
-			</table>
 		</div>
 	</div>
 </body>

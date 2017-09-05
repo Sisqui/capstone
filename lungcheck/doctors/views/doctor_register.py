@@ -7,6 +7,8 @@ from django.db import IntegrityError
 
 from ..models import Doctor
 
+from .doctor_intranet import doctor_intranet
+
 from json import dumps
 from datetime import datetime
 

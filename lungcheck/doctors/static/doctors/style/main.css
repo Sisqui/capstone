@@ -118,6 +118,11 @@
 
 /* INTRANET CSS */
 
+.doctor_intranet_body {
+    background: url('../pix/blur2.jpg');
+    background-size: stretch;
+    background-repeat: no-repeat;
+}
 
 
 /* GENERAL */

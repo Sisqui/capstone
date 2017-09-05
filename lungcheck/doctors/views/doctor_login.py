@@ -59,7 +59,7 @@ def api_login(request) :
 			return HttpResponse(user.doctor.json(), content_type='application/json')
 		else :
 			return json_error("Incorrect login credentials for doctor")
-		
+			
 
 	else :
 		return json_error("No post")

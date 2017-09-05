@@ -6,15 +6,15 @@
 {% block body %}
 
 <div class="info_center_container">
-	<div class="panel panel-danger">
+	<div class="panel panel-{% if type %}{{type}}{% else %}info{% endif %}">
 		<div class="panel-heading padded_container">
 		  	{{ title }}
 		</div>
 		<div class="panel-body">
 			<p p_centered>
-				{{ message }}
+				{{ message }} {% if link %} <a href="{{link}}">Go back</a> {% endif %}
 			</p>
-		</div>
+		</div>		
 	</div>
 </div>
 

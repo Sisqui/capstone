@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from json import dumps
 from datetime import datetime
 
+
 # First register form
 def first_page(request, error="", error_code="") :
 	context = {}
