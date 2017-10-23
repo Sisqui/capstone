@@ -45,11 +45,11 @@ class Doctor(models.Model) :
 
 	MALE = 'M'
 	FEMALE = 'F'
-	NOT_GIVEN = 'O'
+	OTHER = 'O'
 	GENDER_CHOICES = (
 		(MALE, 'Male'),
 		(FEMALE, 'Female'),
-		(NOT_GIVEN, 'Not given'),
+		(OTHER, 'Other'),
 	)
 
 	user = models.OneToOneField(
@@ -63,7 +63,7 @@ class Doctor(models.Model) :
 	gender = models.CharField(
 		max_length=1,
 		choices=GENDER_CHOICES,
-		default='O',
+		null=True,
 	)
 	country = models.CharField(
 		max_length=30, 

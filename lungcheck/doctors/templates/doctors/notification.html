@@ -5,17 +5,19 @@
 {% endblock %}
 {% block body %}
 
-<div class="info_center_container">
-	<div class="panel panel-{% if type %}{{type}}{% else %}info{% endif %}">
-		<div class="panel-heading padded_container">
-		  	{{ title }}
+<body class="doctor_intranet_body">
+	<div class="info_center_container">
+		<div class="panel panel-{% if type %}{{type}}{% else %}info{% endif %}">
+			<div class="panel-heading padded_container">
+			  	{{ title }}
+			</div>
+			<div class="panel-body">
+				<p p_centered>
+					{{ message }} {% if link %} <a href="{{link}}">Go back</a> {% endif %}
+				</p>
+			</div>		
 		</div>
-		<div class="panel-body">
-			<p p_centered>
-				{{ message }} {% if link %} <a href="{{link}}">Go back</a> {% endif %}
-			</p>
-		</div>		
 	</div>
-</div>
+</body>
 
 {% endblock body %}
