@@ -1,0 +1,213 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={Software Requirement Specification},    % title
+    pdfauthor={Lei Fu},                     % author
+    pdfsubject={Capstone 2016},                        % subject of the document
+    pdfkeywords={capstone, lungcheck, django}, % list of keywords
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}%
+\def\myversion{1.0 }
+\date{}
+%\title{%
+
+%}
+\usepackage{hyperref}
+\begin{document}
+
+\begin{flushright}
+    \rule{16cm}{5pt}\vskip1cm
+    \begin{bfseries}
+        \Huge{SOFTWARE REQUIREMENTS\\ SPECIFICATION}\\
+        \vspace{1.9cm}
+        for\\
+        \vspace{1.9cm}
+        Lungcheck Django Server\\
+        \vspace{1.9cm}
+        Capstone Project\\
+        \vspace{3.9cm}
+        by Fu Lei\\
+    \end{bfseries}
+\end{flushright}
+
+\tableofcontents
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%  	      INTRODUCTION            %%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+
+\section{Purpose}
+Lungcheck is a project carried out within the Capstone Project course held at Turku University, Finland, from January to October 2017. The Lungcheck project aims at providing a platform to connect patients with some lung disease (or even healthy people that regularly checks the lungs in order to prevent or detect any disease as soon as possible) together with doctors that can diagnose those patients without ever meeting them. Not only that, in order to have a preliminary result on the health of one's own lungs, the Lungcheck team has worked on an Artificial Intelligence powered algorithm that can detect many different kinds of diseases automatically. In order to do so, the Lungcheck team has also worked on a hardware prototype that can be used to record the lungs' sounds by following a set of instructions given through the Lungcheck Android app. The project consists therefore in three main differentiated parts:
+\begin{itemize}
+ \item A custom developed digital stethoscope that can be connected to the audio jack port of a smartphone.
+ \item An Android app which provides communication with the assigned doctor as well as an interface with instructions on how to record properly the lungs' sounds.
+ \item A Django-based Python 3 app which runs in a cloud server and which serves both as a bridge platform between doctors and patients and a tool for automatically assess the probability of having a lung disease based on the processing of the recorded sounds. 
+\end{itemize}
+
+$ $ \\
+This document focuses on the specification of the Django app. The purpose of the Django-based app running in a cloud server is to provide:
+\begin{itemize}
+ \item A public webpage to promote the Lungcheck project, by introducing the idea and benefits to both potential doctors and patients, as well as the general public.
+ \item An intranet available to both registered patients and doctors, which serves not only as a communication tool but also as a reporting interface of the results of the artificial intelligence powered algorithm that automatically analyzes one's lungs' sounds.
+ \item An automated tool that analyses the main features that can be extracted from the recorded sounds so that patients can have a preliminary idea of their lung's health without a doctor that needs to check them.
+ \item A basic REST API in order to communicate with the currently developed Android app as well as any other future applications built for any other platform.
+\end{itemize}
+
+
+\section{Intended Audience and Reading Suggestions}
+This document is intended for those willing to run their own instance of the Lungcheck Django app.
+
+\section{Project Scope}
+The scope of this project is to provide a basic functional Python web application that can get the recorded data from an Android smartphone, analyze it and report that analysis both to the patient and his/her assigned doctor, if any.
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%  	   DESCRIPTION                %%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Overall Description}
+
+\section{Product Perspective}
+This SRS is part of a larger system description, which includes the specification of the sounds analysis algorithm as well as the digital stethoscope specification. 
+
+\section{Product Functions}
+As introduced before, the main product functions are
+\begin{itemize}
+ \item A public webpage to promote the Lungcheck project, by introducing the idea and benefits to both potential doctors and patients, as well as the general public.
+ \item An intranet available to both registered patients and doctors, which serves not only as a communication tool but also as a reporting interface of the results of the artificial intelligence powered algorithm that automatically analyzes one's lungs' sounds.
+ \item An automated tool that analyses the main features that can be extracted from the recorded sounds so that patients can have a preliminary idea of their lung's health without a doctor that needs to check them.
+ \item A basic REST API in order to communicate with the currently developed Android app as well as any other future applications built for any other platform.
+\end{itemize}
+
+\section{User Classes and Characteristics}
+The interface provided by this project in the form of a web app is intended for:
+\begin{itemize}
+ \item Public website: intended for the general public, specifically potential doctors that might want to contribute to the project and patients (clients) that want to use our product.
+ \item Intranet: intended for registered users; both patients and doctors.
+ \item Analysis tool: intended for both registered patients and doctors (if any is assigned to a patient), who will get the result in the form or a report with the status of the lungs: healthy, sick, or need doctor reevaluation (if the algorithm cannot assess the healthiness of the lungs with enough probability).
+\end{itemize}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%       DEPENDENCIES AND INTERFACES      %%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Operating Environment}
+
+Since this is a Django-based app it can run in any system that can run Python 3. It has been tested under a machine running Ubuntu Server 16.04.2 LTS with 512 MB of RAM. The current configuration uses MySQL as the database layer but it can be easily configured to use sqlite and therefore making the instance lighter (less memory usage) and platform agnostic.
+
+\section{Assumptions and Dependencies}
+
+The only requirement is to have Python 3 installed in the system as well as Django, which can be installed directly, through Python-pip or other methods (refer to the Django website for reference).
+
+\chapter{External Interface Requirements}
+
+\section{User Interfaces}
+The only user interface needed in order to be able to use this web app is any device with a browser and connected to the global Internet network. However, in the case of a patient, in order to fully use all the features provided by the Lungcheck project, then he/she will need to have access to our digital stethoscope as well as an Android smartphone.
+
+\section{Hardware Interfaces}
+The hardware interface for the digital stethoscope is described in its own SRS.
+
+\section{Software Interfaces}
+A browser connected to the Internet.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%  	     FEATURES  	              %%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{System Features}
+This chapter describes more in-depth the three features of the system introduced in the first chapter.
+
+\section{Public website}
+The lungcheck public website, currently hosted at lungcheck.tk, provides information about our project in general, as well as in particular to both doctors and websites. The content of the website is currently in development stage but will include the following:
+
+\subsection{Main page}
+Main page (home), including the benefits of using our system for society: easy, in-home periodical revision of lungs' sounds in order to prematurely diagnose potential lung diseases.
+
+\subsection{Patient Information Page}
+Patient information page, including links to the patient intranet, but also introducing the product (web app, Android app and digital stethoscope) as well as explaining how easy it is to confirm one's lung's health without visiting a doctor, but at the same time getting a notification asking to visit the doctor if the recording indicated that there might be some infection or disease.
+
+\subsection{Doctor Information Page}
+Doctor information page, including how easily they can help patients not only in their surroundings but all over the world with a communication interface and access to all their recordings, as well as the automated reports, so that they don't need to listed and reevaluate every single recording but only those that the Lungcheck analysis tool flags as uncertain or sick.
+
+
+
+\section{Intranet and Automatic Evaluation Tool}
+The web app intranet provides a user-friendly interface for both users and doctors, as well as a base for the automatic evaluation tool.
+
+\subsection{Patient Intranet}
+By logging in in the web app, patients have access to all their recordings' history, as well as the automatic report generated for each one of them individually. They can also use this intranet to communicate with their assigned doctor, if any, and to check the notes that their doctor might have left for any recording that has been reevaluated.
+
+\subsection{Doctor Intranet}
+By logging in in the web app, doctors can check all their assigned patients' recordings, as well as reevaluate any of them, but mainly those that are notified to them as uncertainly classified by the automatic evaluation tool (and those classified as sicks). Doctors can also use this intranet to communicate and send messages to any of their patients.
+
+\subsection{Automatic Evaluation Tool}
+The automatic evaluation tool is a Python script that uses signal processing techniques as well as machine learning algorithms to extract the main features from the lungs' sounds and classify the set of those features as healthy or within a group of known diseases for which the algorithm has been previously trained.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%  	     APPENDIX  	              %%%%%%
+%%%%%%  				      %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter*{Appendix A: Code}
+All the code necessary to run this Django-based web app can be found under the GitHub repository sisqui/lungcheck.
+
+
+
+\end{document}
